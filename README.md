@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Studywise
 
 Full-stack AI study assistant: React frontend, Spring Boot REST API, and MySQL persistence.
@@ -12,3 +13,7 @@ Requirements: Java 17+, Maven, Node 20+, and MySQL 8.
 Set `OPENAI_API_KEY` to enable grounded LLM summaries, questions, and quizzes. Without it, local fallback helpers are available. Supported uploads: PDF, DOCX, TXT (20 MB).
 
 API: `/api/materials` (GET, POST, DELETE) and `/api/study/{id}/{summary|topics|ask|quiz}`.
+=======
+# AI-BASED-STUDY-ASSISTANT
+Study planner for students
+>>>>>>> 94f1ee61316e67d6b484d82b7434e501abdb9e17
