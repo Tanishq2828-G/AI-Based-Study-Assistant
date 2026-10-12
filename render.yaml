@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: studywise-app
+    runtime: docker
+    dockerfilePath: Dockerfile
+    plan: free
+    region: oregon
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: DB_URL
+        fromDatabase:
+          name: studywise-mysql
+          property: connectionString
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-4o-mini
+
+databases:
+  - name: studywise-mysql
+    databaseName: study_assistant
+    user: studywise
+    plan: free
+    region: oregon
