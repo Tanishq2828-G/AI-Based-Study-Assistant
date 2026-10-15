@@ -1,6 +1,8 @@
 import{useEffect,useRef,useState}from'react';
 import{BookOpen,Brain,Check,ChevronDown,ChevronRight,Clock3,FileText,GraduationCap,Layers3,LibraryBig,LoaderCircle,Menu,MessageCircle,Plus,Search,Send,Sparkles,Trash2,Upload,X}from'lucide-react';
-const API='/api', size=n=>n<1024?`${n} B`:n<1048576?`${(n/1024).toFixed(0)} KB`:`${(n/1048576).toFixed(1)} MB`;
+const rawApi = (import.meta.env.VITE_API_URL || import.meta.env.VITE_BACKEND_URL || '').replace(/\/+$/, '');
+const API = rawApi ? `${rawApi}/api` : '/api';
+const size = n => n < 1024 ? `${n} B` : n < 1048576 ? `${(n / 1024).toFixed(0)} KB` : `${(n / 1048576).toFixed(1)} MB`;
 export default function App(){
  const [items,setItems]=useState([]),[doc,setDoc]=useState(null),[tab,setTab]=useState('Overview'),[search,setSearch]=useState(''),[error,setError]=useState(''),[busy,setBusy]=useState(false),[summary,setSummary]=useState(''),[topics,setTopics]=useState([]),[quiz,setQuiz]=useState([]),[answers,setAnswers]=useState({}),[messages,setMessages]=useState([]),[question,setQuestion]=useState(''),[toast,setToast]=useState(''),[menu,setMenu]=useState(false);const input=useRef(null),end=useRef(null);
  const refresh=async()=>{try{let r=await fetch(`${API}/materials?search=${encodeURIComponent(search)}`);if(!r.ok)throw Error('Could not load your materials. Is the API running?');let d=await r.json();setItems(d);setDoc(old=>d.find(x=>x.id===old?.id)||d[0]||null)}catch(e){setError(e.message)}};
